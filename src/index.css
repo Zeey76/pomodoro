@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* background: linear-gradient(315deg, #2e325a 0%, #0e112a 100%) */
+  background-color: hsl(233, 33%, 20%);
+}
+
+.filter-buttons {
+  width: 22rem;
+  height: 3.5rem;
+}
+
