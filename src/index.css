@@ -12,3 +12,12 @@ body {
   height: 3.5rem;
 }
 
+.wrapper {
+  background-color: rgbs(0, 0, 0, 0.5);
+}
+
+.apply-button {
+  position: absolute;
+  cursor: pointer;
+  bottom: 12px;
+}

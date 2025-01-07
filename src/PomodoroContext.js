@@ -1,17 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 import PomodoroReducer from "./components/PomodoroReducer";
-
-const timerSettings = {
-  pomodoro: 25 * 60,
-  shortBreak: 5 * 60,
-  longBreak: 10 * 60,
-};
-
-const initialState = {
-  mode: "pomodoro",
-  secondsLeft: timerSettings.pomodoro,
-  isRunning: false,
-};
+import { initialState } from "./components/PomodoroReducer";
 
 const PomodoroContext = createContext();
 
