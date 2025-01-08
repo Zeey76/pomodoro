@@ -1,4 +1,4 @@
-const timerSettings = {
+let timerSettings = {
   pomodoro: 25 * 60,
   shortBreak: 5 * 60,
   longBreak: 10 * 60,
@@ -34,6 +34,12 @@ const PomodoroReducer = (state, action) => {
         ...state,
         secondsLeft: timerSettings[state.mode],
         isRunning: false,
+      };
+    case "ChangeTimer":
+      timerSettings = action.payload
+      return {
+        ...state,
+        secondsLeft: timerSettings[state.mode]
       };
     default:
       return state;

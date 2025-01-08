@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import FilterButtons from "./components/FilterButtons";
 import Timer from "./components/Timer";
 import { usePomodoro } from "./PomodoroContext";
@@ -8,7 +7,12 @@ import Settings from "./components/Settings";
 function PomodoroTimer() {
   const { state, dispatch } = usePomodoro();
   const { mode, secondsLeft, isRunning } = state;
-  const [isSettingOpen, setIsSettingsOpen] = useState(false)
+  const [isSettingOpen, setIsSettingsOpen] = useState(false);
+  const [minutes, setMinutes] = useState({
+    pomodoro: 25 * 60,
+    longBreak: 10 * 60,
+    shortBreak: 5 * 60,
+  });
 
   useEffect(() => {
     let timer;
@@ -25,7 +29,7 @@ function PomodoroTimer() {
   }, [isRunning, secondsLeft, dispatch]);
 
   function handleSettings() {
-    setIsSettingsOpen(!isSettingOpen)
+    setIsSettingsOpen(!isSettingOpen);
   }
 
   return (
@@ -37,8 +41,15 @@ function PomodoroTimer() {
         secondsLeft={secondsLeft}
         dispatch={dispatch}
       />
-      <img src="./icons/icon-settings.svg" onClick={handleSettings}/>
-      {isSettingOpen && <Settings handleSettings={handleSettings}/>}
+      <img src="./icons/icon-settings.svg" onClick={handleSettings} />
+      {isSettingOpen && (
+        <Settings
+          handleSettings={handleSettings}
+          minutes={minutes}
+          dispatch={dispatch}
+          setMinutes={setMinutes}
+        />
+      )}
     </div>
   );
 }
