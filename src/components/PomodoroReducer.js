@@ -39,6 +39,7 @@ const PomodoroReducer = (state, action) => {
       timerSettings = action.payload
       return {
         ...state,
+        isRunning: false,
         secondsLeft: timerSettings[state.mode]
       };
     default:
