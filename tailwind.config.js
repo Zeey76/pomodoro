@@ -37,6 +37,11 @@ module.exports = {
         10: "10rem",
         20: "20rem"
       },
+      fontFamily: {
+        kumbhSans : ['"Kumbh Sans"', "sans-serif"],
+        robotoSlab: ['"Roboto Slab"', "serif"],
+        spaceMono: ['"Space Mono"', "monospace"]
+      }
     },
   },
   plugins: [],

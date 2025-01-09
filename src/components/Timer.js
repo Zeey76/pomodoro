@@ -1,4 +1,4 @@
-function Timer({ isRunning, secondsLeft, dispatch }) {
+function Timer({ isRunning, secondsLeft, dispatch, color }) {
   function formatTime(secondsLeft) {
     const minutes = Math.floor(secondsLeft / 60);
     const seconds = secondsLeft % 60;
@@ -15,7 +15,7 @@ function Timer({ isRunning, secondsLeft, dispatch }) {
         </div>
         <div className=" ml-2 flex items-center justify-center text-center">
           <button
-            className="text-center font-bold uppercase tracking-[0.9375rem] text-primary-400"
+            className={`text-center font-bold uppercase tracking-[0.9375rem] text-${color}`}
             onClick={() => dispatch({ type: "ToggleTimer" })}
           >
             {isRunning ? "Pause" : secondsLeft === 0 ? "Restart" : "Start"}

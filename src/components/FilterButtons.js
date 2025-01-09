@@ -1,4 +1,4 @@
-function FilterButtons({ dispatch, mode }) {
+function FilterButtons({ dispatch, mode, color }) {
   const filters = ["pomodoro", "shortBreak", "longBreak"];
 
   return (
@@ -9,7 +9,7 @@ function FilterButtons({ dispatch, mode }) {
             key={filter}
             className={`${
               mode === filter
-                ? "bg-primary-400 p-[5px] rounded-full text-neutral-900"
+                ? `bg-${color} p-[5px] rounded-full text-neutral-900`
                 : ""
             } text-neutral-400 font-semibold text-sm shadow-inner`}
             onClick={() => dispatch({ type: "ChangeMode", payload: filter })}

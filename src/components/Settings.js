@@ -1,34 +1,28 @@
-function Settings({ handleSettings, setMinutes, minutes, dispatch }) {
+import { type } from "@testing-library/user-event/dist/type";
+import { useState } from "react";
+
+function Settings({ handleSettings, dispatch, settings, setSettings }) {
   const filters = ["pomodoro", "shortBreak", "longBreak"];
-
-  function changeTimer() {
-    handleSettings();
-    dispatch({
-      type: "ChangeTimer",
-      payload: minutes,
-    });
-  }
-
-  function handleInputChange(newValue, filter) {
-    setMinutes((prev) => ({
+  
+  const [tempSettings, setTempSettings] = useState(settings)
+  
+  const handleSettingsChange = (newValue, settings) => {
+    setTempSettings((prev) => ({
       ...prev,
-      [filter]: newValue * 60,
-    }));
+      [settings]: newValue 
+    }))
   }
 
-  function handleInput(number, filter) {
-    if (minutes[filter] <= 60 && number === -1) {
-      return;
-    } else {
-      setMinutes((prev) => ({
-        ...prev,
-        [filter]: (prev[filter] / 60 + number) * 60,
-      }));
-    }
+  const onApply = () => {
+    setSettings(tempSettings)
+    dispatch({type: "ChangeTimer", payload: tempSettings})
+    dispatch({type: "ChangeFont", payload: tempSettings.font})
+    dispatch({type: "ChangeColor", payload: tempSettings.color})
+    handleSettings()
   }
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full z-900 flex justify-center items-center wrapper">
+    <div className={`fixed top-0 left-0 w-full h-full z-900 flex justify-center items-center wrapper font-${tempSettings.font}`}>
       <div className=" bg-neutral-100 p-1.5 w-[23rem] rounded-md flex flex-col gap-1 z-1000">
         <div className="flex items-center justify-between">
           <h3 className="font-bold">Settings</h3>
@@ -46,19 +40,13 @@ function Settings({ handleSettings, setMinutes, minutes, dispatch }) {
                 <div className="flex justify-between items-center p-1 w-10 bg-neutral-200 h-3 rounded-md">
                   <input
                     type="number"
-                    value={minutes[filter] / 60}
-                    className="w-5 bg-neutral-200 h-3 focus:outline-none"
-                    onChange={(e) => handleInputChange(e.target.value, filter)}
+                    value={tempSettings[filter]}
+                    onChange={(e) => handleSettingsChange(e.target.value, filter)}
+                    className="w-5 bg-neutral-200 h-3 focus:outline-none cursor-"
                   />
                   <div className="flex flex-col gap-[3px]">
-                    <img
-                      src="./icons/icon-arrow-up.svg"
-                      onClick={() => handleInput(+1, filter)}
-                    />
-                    <img
-                      src="./icons/icon-arrow-down.svg"
-                      onClick={() => handleInput(-1, filter)}
-                    />
+                    <img src="./icons/icon-arrow-up.svg" />
+                    <img src="./icons/icon-arrow-down.svg" />
                   </div>
                 </div>
               </div>
@@ -69,31 +57,22 @@ function Settings({ handleSettings, setMinutes, minutes, dispatch }) {
         <div className="flex flex-col items-center justify-center gap-0.5">
           <p>Font</p>
           <div className="flex gap-1">
-            <div className="h-2.5 w-2.5 bg-neutral-200 rounded-full flex items-center justify-center">
-              Aa
-            </div>
-            <div className="h-2.5 w-2.5 bg-neutral-200 rounded-full flex items-center justify-center">
-              Aa
-            </div>
-            <div className="h-2.5 w-2.5 bg-neutral-200 rounded-full flex items-center justify-center">
-              Aa
-            </div>
+            <FontSelector fontChoice={"kumbhSans"} handleSettingsChange={handleSettingsChange}/>
+            <FontSelector fontChoice={"robotoSlab"} handleSettingsChange={handleSettingsChange}/>
+            <FontSelector fontChoice={"spaceMono"} handleSettingsChange={handleSettingsChange}/>
           </div>
         </div>
         <hr className="bg-black h-[0.5px]" />
         <div className="flex flex-col items-center justify-center gap-0.5">
           <p>Color</p>
           <div className="flex gap-1">
-            <div className="h-2.5 w-2.5 bg-primary-400 rounded-full flex items-center justify-center"></div>
-            <div className="h-2.5 w-2.5 bg-primary-500 rounded-full flex items-center justify-center"></div>
-            <div className="h-2.5 w-2.5 bg-primary-600 rounded-full flex items-center justify-center"></div>
+            <ColorSelector colorChoice={"primary-400"} handleSettingsChange={handleSettingsChange}/>
+            <ColorSelector colorChoice={"primary-500"} handleSettingsChange={handleSettingsChange}/>
+            <ColorSelector colorChoice={"primary-600"} handleSettingsChange={handleSettingsChange}/>
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <button
-            className="apply-button bg-primary-400 w-9 p-0.5 rounded-full text-neutral-200 font-semibold"
-            onClick={changeTimer}
-          >
+          <button className={`apply-button bg-${tempSettings.color} w-9 p-0.5 rounded-full text-neutral-200 font-semibold`} onClick={onApply}>
             Apply
           </button>
         </div>
@@ -101,4 +80,25 @@ function Settings({ handleSettings, setMinutes, minutes, dispatch }) {
     </div>
   );
 }
+
+function ColorSelector({ colorChoice, handleSettingsChange }) {
+  return (
+    <div
+      className={`h-2.5 w-2.5 bg-${colorChoice} rounded-full flex items-center justify-center cursor-pointer`}
+      onClick={() => handleSettingsChange(colorChoice, "color")}
+    ></div>
+  );
+}
+
+function FontSelector({ fontChoice, handleSettingsChange }) {
+  return (
+    <button><div
+      className={`h-2.5 w-2.5 bg-neutral-200 rounded-full flex items-center justify-center font-${fontChoice}`}
+      onClick={() => handleSettingsChange(fontChoice, "font")}
+    >
+      Aa
+    </div></button>
+  );
+}
+
 export default Settings;
