@@ -13,7 +13,22 @@ function Settings({ handleSettings, dispatch, settings, setSettings }) {
     }))
   }
 
+  function handleInput(number, filter) {
+    if (tempSettings[filter] <= 1 && number === -1) {
+      return;
+    } else {
+      setTempSettings((prev) => ({
+        ...prev,
+        [filter]: (prev[filter] + number),
+      }));
+    }
+  }
+
   const onApply = () => {
+    if (tempSettings.pomodoro || tempSettings.shortBreak || tempSettings.longBreak < 0) {
+      alert("Reset timer values to valid numbers")
+      return
+    }
     setSettings(tempSettings)
     dispatch({type: "ChangeTimer", payload: tempSettings})
     dispatch({type: "ChangeFont", payload: tempSettings.font})
@@ -45,8 +60,8 @@ function Settings({ handleSettings, dispatch, settings, setSettings }) {
                     className="w-5 bg-neutral-200 h-3 focus:outline-none cursor-"
                   />
                   <div className="flex flex-col gap-[3px]">
-                    <img src="./icons/icon-arrow-up.svg" />
-                    <img src="./icons/icon-arrow-down.svg" />
+                    <img src="./icons/icon-arrow-up.svg" onClick={() => handleInput(+1, filter)}/>
+                    <img src="./icons/icon-arrow-down.svg" onClick={() => handleInput(-1, filter)}/>
                   </div>
                 </div>
               </div>
