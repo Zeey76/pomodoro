@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import FilterButtons from "./components/FilterButtons";
 import Timer from "./components/Timer";
 import { usePomodoro } from "./PomodoroContext";
-import Settings from "./components/Settings";
+import Settings from "./components/Settings/Settings";
 
 function PomodoroTimer() {
   const { state, dispatch } = usePomodoro();

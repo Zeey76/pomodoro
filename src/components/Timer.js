@@ -16,7 +16,7 @@ function Timer({ isRunning, secondsLeft, dispatch, color }) {
         <div className=" ml-2 flex items-center justify-center text-center">
           <button
             className="text-center font-bold uppercase tracking-[0.9375rem]"
-            style={{color: color}}
+            style={{ color: color }}
             onClick={() => dispatch({ type: "ToggleTimer" })}
           >
             {isRunning ? "Pause" : secondsLeft === 0 ? "Restart" : "Start"}
