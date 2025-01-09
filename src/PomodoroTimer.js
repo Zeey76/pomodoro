@@ -12,9 +12,9 @@ function PomodoroTimer() {
     pomodoro: 25,
     shortBreak: 5,
     longBreak: 10,
-    font: "kumbhSans",
-    color: "primary-400"
-  })
+    font: "font-kumbhSans",
+    color: "hsl(0, 91%, 71%)",
+  });
 
   useEffect(() => {
     let timer;
@@ -35,9 +35,11 @@ function PomodoroTimer() {
   }
 
   return (
-    <div className={`flex flex-col justify-center items-center min-h-screen gap-3 font-${font}`}>
+    <div
+      className={`flex flex-col justify-center items-center min-h-screen gap-3 ${font}`}
+    >
       <img src="./icons/logo.svg" />
-      <FilterButtons dispatch={dispatch} mode={mode} color={color}/>
+      <FilterButtons dispatch={dispatch} mode={mode} color={color} />
       <Timer
         isRunning={isRunning}
         secondsLeft={secondsLeft}
@@ -47,7 +49,10 @@ function PomodoroTimer() {
       <img src="./icons/icon-settings.svg" onClick={handleSettings} />
       {isSettingOpen && (
         <Settings
-          handleSettings={handleSettings} dispatch={dispatch} settings={settings} setSettings={setSettings}
+          handleSettings={handleSettings}
+          dispatch={dispatch}
+          settings={settings}
+          setSettings={setSettings}
         />
       )}
     </div>

@@ -8,8 +8,8 @@ export const initialState = {
   mode: "pomodoro",
   secondsLeft: timerSettings.pomodoro,
   isRunning: false,
-  font: "kumbhSans",
-  color: "primary-400",
+  font: "font-kumbhSans",
+  color: "hsl(0, 91%, 71%)",
 };
 
 const PomodoroReducer = (state, action) => {
@@ -41,22 +41,22 @@ const PomodoroReducer = (state, action) => {
       timerSettings = {
         pomodoro: action.payload.pomodoro * 60,
         shortBreak: action.payload.shortBreak * 60,
-        longBreak: action.payload.longBreak * 60
-      }
+        longBreak: action.payload.longBreak * 60,
+      };
       return {
         ...state,
         secondsLeft: timerSettings[state.mode],
-        isRunning: false
+        isRunning: false,
       };
     case "ChangeFont":
       return {
         ...state,
-        font: action.payload
+        font: action.payload,
       };
     case "ChangeColor":
       return {
         ...state,
-        color: action.payload
+        color: action.payload,
       };
     default:
       return state;

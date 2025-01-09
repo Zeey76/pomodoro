@@ -9,10 +9,11 @@ function FilterButtons({ dispatch, mode, color }) {
             key={filter}
             className={`${
               mode === filter
-                ? `bg-${color} p-[5px] rounded-full text-neutral-900`
+                ? `p-[5px] rounded-full text-neutral-900`
                 : ""
             } text-neutral-400 font-semibold text-sm shadow-inner`}
             onClick={() => dispatch({ type: "ChangeMode", payload: filter })}
+            style={mode === filter ? {backgroundColor : color} : undefined}
           >
             {filter.replace(/([A-Z])/g, " $1").toLowerCase()}
           </button>
