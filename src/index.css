@@ -19,7 +19,7 @@ body {
 .apply-button {
   position: absolute;
   cursor: pointer;
-  bottom: 12px;
+  bottom: -1rem;
 }
 
 input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {

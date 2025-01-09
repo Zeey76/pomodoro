@@ -51,9 +51,9 @@ function Settings({ handleSettings, dispatch, settings, setSettings }) {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full z-900 flex justify-center items-center wrapper ${tempSettings.font} absolute`}
+      className={`fixed top-0 left-0 w-full h-full z-900 flex justify-center items-center wrapper ${tempSettings.font}`}
     >
-      <div className=" bg-neutral-100 p-1.5 w-[23rem] rounded-md flex flex-col gap-1 z-1000">
+      <div className=" bg-neutral-100 p-1.5 w-[23rem] rounded-md flex flex-col gap-1 z-1000 absolute">
         <div className="flex items-center justify-between">
           <h3 className="font-bold">Settings</h3>
           <button>
