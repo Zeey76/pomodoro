@@ -5,14 +5,20 @@ function TimerSettings({
 }) {
   const filters = ["pomodoro", "shortBreak", "longBreak"];
   function handleInput(number, filter) {
-    if (tempSettings[filter] <= 1 && number === -1) {
+    const newValue = tempSettings[filter] + number;
+    if (newValue < 1) {
+      alert("Time cannot be less than 1 minute");
       return;
-    } else {
-      setTempSettings((prev) => ({
-        ...prev,
-        [filter]: prev[filter] + number,
-      }));
     }
+    if (newValue > 60) {
+      alert("Time cannot exceed 60 minutes");
+      return;
+    }
+
+    setTempSettings((prev) => ({
+      ...prev,
+      [filter]: newValue,
+    }));
   }
   return (
     <>
@@ -26,7 +32,10 @@ function TimerSettings({
             <input
               type="number"
               value={tempSettings[filter]}
-              onChange={(e) => handleSettingsChange(e.target.value, filter)}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                handleSettingsChange(value, filter);
+              }}
               className="w-5 bg-neutral-200 h-3 focus:outline-none cursor-"
             />
             <div className="flex flex-col gap-[3px]">
