@@ -8,6 +8,9 @@ function Settings({ handleSettings, settings, setSettings, dispatch }) {
   const [tempSettings, setTempSettings] = useState(settings);
 
   const handleSettingsChange = (newValue, settings) => {
+    if (!isNaN(newValue) && newValue > 60) {
+      return;
+    }
     setTempSettings((prev) => ({
       ...prev,
       [settings]: newValue,
