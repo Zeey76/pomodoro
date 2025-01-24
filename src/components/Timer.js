@@ -16,11 +16,20 @@ function Timer({ isRunning, secondsLeft, dispatch, color }) {
         <div className=" ml-2 flex items-center justify-center text-center">
           <button
             className="text-center font-bold uppercase tracking-[0.9375rem]"
+            s
             style={{ color: color }}
             onClick={() => dispatch({ type: "ToggleTimer" })}
-            aria-label={isRunning ? "Pause Timer": "Start Timer"}
+            aria-label={isRunning ? "Pause Timer" : "Start Timer"}
           >
-            {isRunning ? "Pause" : secondsLeft === 0 ? <span>Restart</span>: "Start"}
+            {isRunning ? (
+              "Pause"
+            ) : secondsLeft === 0 ? (
+              <span onClick={() => dispatch({ type: "RestartTimer" })}>
+                Restart
+              </span>
+            ) : (
+              <span>Start</span>
+            )}
           </button>
         </div>
       </div>
