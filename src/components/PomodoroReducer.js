@@ -31,6 +31,12 @@ const PomodoroReducer = (state, action) => {
         ...state,
         isRunning: !state.isRunning,
       };
+    case "StopTimer":
+      return {
+        ...state,
+        secondsLeft: 0,
+        isRunning: false,
+      };
     case "RestartTimer":
       return {
         ...state,

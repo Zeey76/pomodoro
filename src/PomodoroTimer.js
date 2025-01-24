@@ -25,7 +25,7 @@ function PomodoroTimer() {
     }
 
     if (secondsLeft === 0) {
-      dispatch({ type: "RestartTimer" });
+      dispatch({ type: "StopTimer" });
     }
     return () => clearInterval(timer);
   }, [isRunning, secondsLeft, dispatch]);
@@ -38,7 +38,7 @@ function PomodoroTimer() {
     <div
       className={`flex flex-col justify-center items-center min-h-screen gap-3 ${font}`}
     >
-      <img src="./icons/logo.svg" />
+      <img src="./icons/logo.svg" alt=""/>
       <FilterButtons dispatch={dispatch} mode={mode} color={color} />
       <Timer
         isRunning={isRunning}
@@ -46,7 +46,7 @@ function PomodoroTimer() {
         dispatch={dispatch}
         color={color}
       />
-      <img src="./icons/icon-settings.svg" onClick={handleSettings} />
+      <img src="./icons/icon-settings.svg" onClick={handleSettings} alt=""/>
       {isSettingOpen && (
         <Settings
           handleSettings={handleSettings}

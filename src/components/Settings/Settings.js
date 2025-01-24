@@ -25,7 +25,7 @@ function Settings({ handleSettings, settings, setSettings, dispatch }) {
         <div className="flex items-center justify-between">
           <h2 className="font-bold text-2xl">Settings</h2>
           <button>
-            <img src="./icons/icon-close.svg" onClick={handleSettings} />
+            <img src="./icons/icon-close.svg" onClick={handleSettings} alt="" />
           </button>
         </div>
         <hr className="bg-black h-[0.5px]" />

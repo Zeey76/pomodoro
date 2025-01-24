@@ -36,15 +36,17 @@ function TimerSettings({
                 const value = parseInt(e.target.value);
                 handleSettingsChange(value, filter);
               }}
-              className="w-5 bg-neutral-200 h-3 focus:outline-none cursor-"
+              className="w-5 bg-neutral-200 h-3 focus:outline-none"
             />
             <div className="flex flex-col gap-[3px]">
               <img
                 src="./icons/icon-arrow-up.svg"
+                alt=""
                 onClick={() => handleInput(+1, filter)}
               />
               <img
                 src="./icons/icon-arrow-down.svg"
+                alt=""
                 onClick={() => handleInput(-1, filter)}
               />
             </div>
