@@ -20,7 +20,7 @@ function Timer({ isRunning, secondsLeft, dispatch, color }) {
             onClick={() => dispatch({ type: "ToggleTimer" })}
             aria-label={isRunning ? "Pause Timer": "Start Timer"}
           >
-            {isRunning ? "Pause" : secondsLeft === 0 ? "Restart" : "Start"}
+            {isRunning ? "Pause" : secondsLeft === 0 ? <span>Restart</span>: "Start"}
           </button>
         </div>
       </div>
